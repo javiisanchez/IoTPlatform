@@ -1,6 +1,7 @@
 package domain
 
-// Create the class reading. The main object of the platform
+// Entidades de negocio principales de la app
+
 type Reading struct {
 	DeviceID  string
 	Timestamp int64

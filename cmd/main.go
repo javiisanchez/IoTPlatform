@@ -1,23 +1,33 @@
 package main
 
 import (
-	"IoTPlatform/internal/adapters/api"
-	"IoTPlatform/internal/adapters/repository"
+	/*"IoTPlatform/internal/adapters/api"
+	"IoTPlatform/internal/adapters/cli"
 	"IoTPlatform/internal/application"
 	"fmt"
 	"log"
-	"net/http"
+	"net/http"*/
+
+	"IoTPlatform/internal/adapters/handlers"
+	"IoTPlatform/internal/adapters/repositories"
+	"IoTPlatform/internal/adapters/server"
+	"IoTPlatform/internal/services"
+	"fmt"
 )
 
 func main() {
 	fmt.Println("Levantando IoTPlatform")
 
-	repo := &repository.DeviceRepositoryImpl{}
-	service := application.NewDeviceService(repo)
-	handler := api.NewRestHandler(service)
-
-	http.HandleFunc("/devices", handler.RegisterDevice)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	mongoConn := "secret🤫"
+	//repositories
+	deviceRepository := repositories.NewDeviceRepository(mongoConn)
+	//services
+	deviceService := services.NewDeviceService(deviceRepository)
+	//handlers
+	deviceHandlers := handlers.NewDeviceHandlers(deviceService)
+	//server
+	s := server.NewServer(deviceHandlers)
+	s.Initialize()
+	//server.Initialize(userHandlers,)
 	fmt.Printf("Servidor ejecutándose en el puerto 8080")
-
 }

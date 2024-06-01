@@ -7,7 +7,9 @@ type ReadingRepositoryImpl struct {
 	// Aquí irían detalles de la implementación, por ejemplo, conexión a una base de datos
 }
 
-func (r *ReadingRepositoryImpl) AddDeviceReadings(reading domain.Reading) error {
+func (r *ReadingRepositoryImpl) AddDeviceReadings(deviceIDofReading domain.Reading) error {
+	//r.AddDeviceReadings(deviceIDofReading.GetDeviceID(), deviceIDofReading.GetValue())
+
 	// Implementación para guardar el dispositivo
 	return nil
 }
@@ -24,5 +26,6 @@ func (r *ReadingRepositoryImpl) GetDeviceReadings(id string) (*domain.Reading, e
 
 func (r *ReadingRepositoryImpl) RegisterDevice(reading domain.Reading) (*domain.Reading, error) {
 	// Implementación para obtener el dispositivo
+	r.RegisterDevice(reading)
 	return nil, nil
 }
