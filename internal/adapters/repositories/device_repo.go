@@ -2,6 +2,7 @@
 package repositories
 
 import (
+	"IoTPlatform/internal/domain"
 	"IoTPlatform/internal/ports"
 	"context"
 	"time"
@@ -49,7 +50,7 @@ func NewDeviceRepository(conn string) *DeviceRepository {
 	}
 }
 
-func (r *DeviceRepository) Create(ID string) error {
+func (r *DeviceRepository) Create(device domain.Device) error {
 	//Here your code for login in mongo database
 	return nil
 }

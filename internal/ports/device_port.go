@@ -1,14 +1,18 @@
 package ports
 
-import "github.com/gofiber/fiber"
+import (
+	"IoTPlatform/internal/domain"
+
+	fiber "github.com/gofiber/fiber/v2"
+)
 
 type IDeviceService interface {
-	Create(ID string) error
+	Create(device domain.Device) error
 	Delete(ID string) error
 }
 
 type IDeviceRepository interface {
-	Create(ID string) error
+	Create(device domain.Device) error
 	Delete(ID string) error
 }
 

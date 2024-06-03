@@ -1,7 +1,9 @@
 package services
 
 import (
+	"IoTPlatform/internal/domain"
 	"IoTPlatform/internal/ports"
+	"fmt"
 )
 
 type DeviceService struct {
@@ -18,11 +20,12 @@ func NewDeviceService(repository ports.IDeviceRepository) *DeviceService {
 	}
 }
 
-func (s *DeviceService) Create(ID string) error {
-	err := s.deviceRepository.Create(ID)
+func (s *DeviceService) Create(device domain.Device) error {
+	err := s.deviceRepository.Create(device)
 	if err != nil {
 		return err
 	}
+	fmt.Println("Device created")
 	return nil
 }
 
