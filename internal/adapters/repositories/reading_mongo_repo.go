@@ -16,15 +16,15 @@ const (
 	MongoClientTimeout = 5
 )
 
-type DeviceRepository struct {
+type ReadingRepository struct {
 	client     *mongo.Client
 	database   *mongo.Database
 	collection *mongo.Collection
 }
 
-var _ ports.IDeviceRepository = (*DeviceRepository)(nil)
+var _ ports.IRedingRepository = (*ReadingRepository)(nil)
 
-func NewDeviceRepository(conn string) *DeviceRepository {
+func NewReadingRepository(conn string) *ReadingRepository {
 	ctx, cancelFunc := context.WithTimeout(context.Background(), MongoClientTimeout*time.Second)
 	defer cancelFunc()
 
@@ -43,19 +43,20 @@ func NewDeviceRepository(conn string) *DeviceRepository {
 	database := client.Database("goHexagonalBlog")
 	collection := database.Collection("users")
 
-	return &DeviceRepository{
+	return &ReadingRepository{
 		client:     client,
 		database:   database,
 		collection: collection,
 	}
 }
 
-func (r *DeviceRepository) Create(device domain.Device) error {
+// debemos cambiar el IPORTs ya que no implementa
+func (r *ReadingRepository) Create(device domain.Device) error {
 	//Here your code for login in mongo database
 	return nil
 }
 
-func (r *DeviceRepository) Delete(ID string) error {
+func (r *ReadingRepository) Delete(ID string) error {
 	//Here your code for save in mongo database
 	return nil
 }

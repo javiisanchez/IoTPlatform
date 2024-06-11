@@ -23,13 +23,15 @@ func NewDeviceHandlers(deviceService ports.IDeviceService) *DeviceHandlers {
 
 func (h *DeviceHandlers) Create(c *fiber.Ctx) error {
 
-	//test
+	// Device struct to be created from the request body
+	var device domain.Device
+
 	req := c.BodyRaw()
 	fmt.Println(string(req))
+	//test
 	//var test = []byte(`{"ID":"ECA_0001","Name":"EstacionCalidadDelAire","Location":"BCN","Status":"True","CreatedAt":"2024-06-02T13:19:41Z","UpdatedAt":"2024-06-02T13:19:41Z"}`)
 	//fmt.Println(string(test))
 
-	var device domain.Device
 	err := json.Unmarshal(req, &device)
 	if err != nil {
 		return fiber.NewError(fiber.StatusBadRequest, "Failed to parse request body")
@@ -41,6 +43,7 @@ func (h *DeviceHandlers) Create(c *fiber.Ctx) error {
 	if err1 != nil {
 		return err1
 	}
+	//repositories.NewDeviceRepository().CreateDevice(fiber.Ctx, device)
 	return nil
 }
 

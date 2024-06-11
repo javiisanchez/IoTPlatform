@@ -20,6 +20,7 @@ func NewDeviceService(repository ports.IDeviceRepository) *DeviceService {
 	}
 }
 
+// Create a new device
 func (s *DeviceService) Create(device domain.Device) error {
 	err := s.deviceRepository.Create(device)
 	if err != nil {

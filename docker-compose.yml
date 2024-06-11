@@ -1,0 +1,40 @@
+#version: '2.27.0'
+
+services:
+  # postgres:
+  #   image: postgres:latest
+  #   container_name: postgres_dockerizing
+  #   ports:
+  #     - 5432:5432
+  #   restart: always
+  #   environment:
+  #     POSTGRES_PASSWORD: iotPlatform
+  #   volumes:
+  #     - database_dockerizing:/var/lib/postgresql/data
+  #     - ./dbshell:/docker-entrypoint-initdb.d/
+  #   networks:
+  #     - fullstack
+  iotplatform:
+    container_name: iotPlatform_dockerizing
+    build: .
+    ports:
+      - 8080:8080
+    #restart: always
+    volumes:
+      - .:/go/src/myapp
+    command: go run cmd/main.go
+    env_file:
+      - .env
+
+#     depends_on:
+#       - postgres
+#     networks:
+#       - fullstack
+
+# volumes:
+#   database_dockerizing:
+#   api_volume:
+
+# networks:
+#   fullstack:
+#     driver: bridge

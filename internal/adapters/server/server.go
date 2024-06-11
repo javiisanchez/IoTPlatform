@@ -29,7 +29,7 @@ func (s *Server) Initialize() {
 
 	deviceRoutes.Post("/registerDevice", s.deviceHandlers.Create)
 
-	err := app.Listen(":5000")
+	err := app.Listen(":8080")
 	if err != nil {
 		log.Fatal(err)
 	}
